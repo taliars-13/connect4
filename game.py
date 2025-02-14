@@ -11,13 +11,7 @@ headers = {
 
 
 
-
-def play(board):
-    response2 = requests.get(base + "/api/status", headers=headers)
-    if response2.json()['code'] == 6:
-        opp = response2.json()["opponent_id"]
-    result = 0
-    board = np.array(board)
+def checkwin(board):
     for col in range(0, 7): 
         tboard = np.array(board)
         print(board)
@@ -31,7 +25,12 @@ def play(board):
         if result != 0: 
             go= str(col)
             print(result, "hello")
-            break
+            return go
+    
+    return False
+
+def checklose(board, opp):
+    for col in range(0, 7): 
         tboard = np.array(board)
         for row in range(5, -1, -1):
             if tboard[row, col] == 0:
@@ -41,8 +40,23 @@ def play(board):
         print(result, "result of opp check")
         if result != 0: 
             go= str(col)
-            print(result, "hello")
-            break
+            print(result, "hellowe")
+            return go
+    return False
+
+
+def play(board):
+    response2 = requests.get(base + "/api/status", headers=headers)
+    if response2.json()['code'] == 6:
+        opp = response2.json()["opponent_id"]
+    result = 0
+    board = np.array(board)
+    win = checkwin(board)
+    lose = checklose(board, opp)
+    if win: 
+        go=win
+    elif lose:
+        go =lose
 
         # elif result != 37 and result != 0: 
         #     headers["column"]= str(col)
