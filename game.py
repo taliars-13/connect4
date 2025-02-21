@@ -9,7 +9,6 @@ headers = {
 }
 
 
-#hello
 
 def checkwin(board):
     for col in range(0, 7): 
@@ -83,6 +82,8 @@ def playable(board):
              notplay.append(col)
     return notplay
 
+#CODE MODIFIED FROM SOME FOUND ON STACKOVERFLOW:
+
 def check_victory(board: np.array) -> int:
     for row in range(7 - 4):
         for col in range(8 - 4):
@@ -119,28 +120,6 @@ def check_subfield(field: np.array) -> int:
 def same_number(values: list) -> int:
     return int((values == values[0]).all() * values[0])
 
-
-# response = requests.get(base + "/api/status", headers=headers)
-
-# if response.status_code == 200:
-#     resp = response.json()
-#     if resp["code"] == 9:
-#         response = requests.post(base + "/api/join_game", headers=headers)
-#         #print(response.json())
-#     elif resp["code"] == 6 or resp["code"] == 5:
-#         while resp["code"]==6 or resp["code"]==5:
-#             if resp["code"] == 6:
-#                 if resp["your turn"] != False:
-#                     play(resp["board"])
-#             response = requests.get(base + "/api/status", headers=headers)
-#             resp = response.json()
-#     else:
-#         print(resp["text"])
-
-# else:
-#     print("rah")
-#     print(response.status_code)
-#     print(response.content)
 
 
 def full_game():
