@@ -57,9 +57,6 @@ def play(board):
     elif lose:
         go =lose
 
-        # elif result != 37 and result != 0: 
-        #     headers["column"]= str(col)
-        #     break
     else: 
         rand = random.randrange(0,6)
         while rand in playable(board): 
